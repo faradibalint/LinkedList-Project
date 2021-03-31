@@ -28,11 +28,48 @@ public:
     }
     void beforenewelement(int q) ///új elem beszúrása a lista elejére "a fej elé"
     {
+        element* elso = new element;
+        elso->data = q;
+        elso->next = NULL;
 
+        if(first==NULL)
+        {
+            first = elso;
+            last = elso;
+        }
+        else
+        {
+            elso->next = first->next;
+            first->next = elso;
+            elso->data = first->data;
+            first->data = q;
+        }   
     }
     void afternewelement(int q) ///új elem beszúrása a lista végére 
     {
+        element* elso = new element;
+        elso->data = q;
+        elso->next = NULL;
 
+        if(first==NULL)
+        {
+            first = elso;
+            last = elso;
+
+        }
+        else
+        {
+            elso->next = last;
+            element* n = new element();
+            while(n->next!=last)
+            {
+                n=n->next;
+            }
+            n->next = elso;
+            elso->data = last->data;
+            last->data = q;
+
+        }
     }
     void insidenewelement(int q) ///új elem beszúrása a listába
     {
@@ -80,13 +117,34 @@ public:
     }
     void deletelist() ///a lista törlése
     {
-
+      
+    }
+    void batyusutes()
+    {
+        element* n = first;
+        while(n!=NULL)
+        {
+            cout<<n->data<<endl;
+            n=n->next;
+        }
     }
 
 };
 
 int main(){
     LList lista;
+    
+  
+    lista.beforenewelement(3);
+    lista.beforenewelement(2);
+    lista.afternewelement(6);    
+
+    lista.batyusutes();
+    
+    
+    
+     
+
     
     return 0;
 }
