@@ -55,20 +55,11 @@ public:
         {
             first = elso;
             last = elso;
-
         }
         else
         {
-            elso->next = last;
-            element* n = new element();
-            while(n->next!=last)
-            {
-                n=n->next;
-            }
-            n->next = elso;
-            elso->data = last->data;
-            last->data = q;
-
+            last->next=elso;
+            last=elso;
         }
     }
     void insidenewelement(int q) ///új elem beszúrása a listába
@@ -134,11 +125,12 @@ public:
 int main(){
     LList lista;
     
-  
     lista.beforenewelement(3);
+    lista.afternewelement(4);
+    lista.afternewelement(5);
     lista.beforenewelement(2);
-    lista.afternewelement(6);    
-
+    lista.afternewelement(6);
+    lista.beforenewelement(1);    
     lista.batyusutes();
     
     
