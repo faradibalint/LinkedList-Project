@@ -84,11 +84,41 @@ public:
     }
     void specifiedsearch(int q) ///megadott elem keresése
     {
-
+        element* n = first;
+        int m=1;
+        while(n->data!=q && n!=last)
+        {
+            m=m+1;
+            n=n->next;
+        }
+        if (n->data==q)
+        {
+        cout<<"A keresett elem a(z) "<<m<<". helyen talalhato."<<endl;
+        }
+        else
+        {
+        cout<<"ERROR: A lista nem tartalmazza a megadott elemet."<<endl;
+        }
     }
     void specifiedmodify(int q) ///megadott elem módosítása
     {
-
+        cout<<"Adja meg az uj szamot: ";
+        int a;
+        cin>>a;
+        element* n = first;
+        while(n->data!=q && n!=last)
+        {
+            n=n->next;
+        }
+        if (n->data==q)
+        {
+        n->data=a;
+        cout<<"A modositas sikeresen lezajlott."<<endl;
+        }
+        else
+        {
+        cout<<"ERROR: A lista nem tartalmazza a modositando elemet."<<endl;
+        }
     }
     void elementswitch(int q,int p) ///két szomszédos elem cseréje
     {
@@ -131,7 +161,24 @@ int main(){
     lista.beforenewelement(2);
     lista.afternewelement(6);
     lista.beforenewelement(1);    
+    cout<<endl;
+    lista.specifiedsearch(1);
+    lista.specifiedsearch(2);
+    lista.specifiedsearch(3);
+    lista.specifiedsearch(4);
+    lista.specifiedsearch(5);
+    lista.specifiedsearch(6);
+    lista.specifiedsearch(7);
+    lista.specifiedmodify(1);
+    lista.specifiedmodify(2);
+    lista.specifiedmodify(3);
+    lista.specifiedmodify(4);
+    lista.specifiedmodify(5);
+    lista.specifiedmodify(6);
+    lista.specifiedmodify(7);
+
     lista.batyusutes();
+
     
     
     
