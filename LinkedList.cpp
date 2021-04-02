@@ -126,15 +126,58 @@ public:
     }
     void listreverse() /// a lista megfordítása
     {
+        if (first==NULL)
+        {
+            cout<<"ERROR: A lista nem tartalmaz elemeket."<<endl;
+        }
+        else if (first==last)
+        {
+            cout<<"ERROR: A lista egy elemu, a megforditas nem vegezheto el."<<endl;
+        }
+        else
+        {
+            element* n = first;
+            int a=1;
+            do
+            {
+                n=n->next;
+                a=a+1;
+            } while (n!=last);
 
+            int szamok[a];
+
+            element* o = first;
+            do
+            {
+                szamok[a]=o->data;
+                a=a-1;
+                o=o->next;
+            } while (o!=NULL);
+
+            a=a+1;
+            element* p = first;
+            do
+            {
+                p->data=szamok[a];
+                a=a+1;
+                p=p->next;
+            } while (p!=NULL);
+        }
     }
     void outlist() /// a lista elemeinek kilistázása
     {
-         element* n = first;
-        while(n!=NULL)
+        element* n = first;
+        if(first!=NULL)
         {
-            cout<<n->data<<endl;
-            n=n->next;
+            while(n!=NULL)
+            {
+                cout<<n->data<<endl;
+                n=n->next;
+            }
+        }
+        else
+        {
+            cout<<"A lista nem tartalmaz elemeket."<<endl;
         }
     }
     void quantity() /// a lista elemeinek darabszáma
@@ -157,30 +200,28 @@ public:
     }
     void deletelist() ///a lista törlése
     {
+      cout<<"A lista sikeresen torlodott."<<endl;
       delete this;
-      cout<<"List successfully deleted"<<endl;
-      first=NULL;
-      last=NULL;
     }
  
 };
 
 int main(){
     LList lista;
-    
+
+    lista.listreverse();
+
     lista.beforenewelement(3);
+    lista.listreverse();
+    
     lista.afternewelement(4);
     lista.afternewelement(5);
     lista.beforenewelement(2);
     lista.afternewelement(6);
     lista.beforenewelement(1);    
-    cout<<endl;
 
     lista.outlist();
-    lista.quantity();
-    lista.deletelist();
-    lista.quantity();
-    lista.outlist();
+    lista.listreverse();
     lista.outlist();
 
 
