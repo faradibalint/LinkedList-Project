@@ -181,6 +181,7 @@ int main(){
     lista.deletelist();
     lista.quantity();
     lista.outlist();
+    lista.outlist();
 
 
 
