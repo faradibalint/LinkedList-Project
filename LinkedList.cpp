@@ -130,7 +130,12 @@ public:
     }
     void outlist() /// a lista elemeinek kilistázása
     {
-    
+         element* n = first;
+        while(n!=NULL)
+        {
+            cout<<n->data<<endl;
+            n=n->next;
+        }
     }
     void quantity() /// a lista elemeinek darabszáma
     {
@@ -138,18 +143,10 @@ public:
     }
     void deletelist() ///a lista törlése
     {
-      
+      delete this;
+      cout<<"List successfully deleted"<<endl;
     }
-    void batyusutes()
-    {
-        element* n = first;
-        while(n!=NULL)
-        {
-            cout<<n->data<<endl;
-            n=n->next;
-        }
-    }
-
+ 
 };
 
 int main(){
@@ -177,7 +174,10 @@ int main(){
     lista.specifiedmodify(6);
     lista.specifiedmodify(7);
 
-    lista.batyusutes();
+    lista.outlist();
+    lista.deletelist();
+
+
 
     
     
