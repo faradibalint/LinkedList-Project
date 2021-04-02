@@ -139,12 +139,28 @@ public:
     }
     void quantity() /// a lista elemeinek darabszáma
     {
-
+        element* n = first;
+        int m=1;
+        if(first!=NULL)
+            {
+                while(n!=last)
+                {
+                m=m+1;
+                n=n->next;
+                }
+            cout<<"A lista "<<m<< " darab elemmel rendelkezik."<<endl;
+            }
+        else
+        {
+            cout<<"A lista nem tartalmaz elemeket."<<endl;
+        }
     }
     void deletelist() ///a lista törlése
     {
       delete this;
       cout<<"List successfully deleted"<<endl;
+      first=NULL;
+      last=NULL;
     }
  
 };
@@ -159,23 +175,12 @@ int main(){
     lista.afternewelement(6);
     lista.beforenewelement(1);    
     cout<<endl;
-    lista.specifiedsearch(1);
-    lista.specifiedsearch(2);
-    lista.specifiedsearch(3);
-    lista.specifiedsearch(4);
-    lista.specifiedsearch(5);
-    lista.specifiedsearch(6);
-    lista.specifiedsearch(7);
-    lista.specifiedmodify(1);
-    lista.specifiedmodify(2);
-    lista.specifiedmodify(3);
-    lista.specifiedmodify(4);
-    lista.specifiedmodify(5);
-    lista.specifiedmodify(6);
-    lista.specifiedmodify(7);
 
     lista.outlist();
+    lista.quantity();
     lista.deletelist();
+    lista.quantity();
+    lista.outlist();
 
 
 
