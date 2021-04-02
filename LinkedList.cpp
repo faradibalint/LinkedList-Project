@@ -22,9 +22,22 @@ public:
         first = NULL;
         last = NULL;
     }
-    void fillup(int q[]) ///lista feltöltése tömbből 
+    void fillup(int q[], int m) ///lista feltöltése tömbből
     {
 
+        //m: tomb elemeinek szama, e: elozo, j: jelenlegi
+        element* e= new element;
+        e->data=q[0];
+        first = e;
+        for(int i=1;i<m;i++)
+        {
+            element* j= new element;
+            j->data=q[i];
+            e->next = j;
+            e=j;
+        }
+        e->next=NULL;
+        last=e;
     }
     void beforenewelement(int q) ///új elem beszúrása a lista elejére "a fej elé"
     {
@@ -213,17 +226,17 @@ int main(){
 
     lista.beforenewelement(3);
     lista.listreverse();
-    
+
     lista.afternewelement(4);
     lista.afternewelement(5);
     lista.beforenewelement(2);
     lista.afternewelement(6);
-    lista.beforenewelement(1);    
+    lista.beforenewelement(1); 
 
-    lista.outlist();
     lista.listreverse();
     lista.outlist();
 
+    lista.fillup({},5);
 
 
     
