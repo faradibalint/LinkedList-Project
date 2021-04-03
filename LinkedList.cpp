@@ -83,9 +83,19 @@ public:
     {
 
     }
-    void firstdelete() ///az első elem törlése
+   void firstdelete() ///az elsõ elem törlése
     {
-
+        if(first!=NULL)
+        {
+            element* Pelso=first;
+            first=first->next;
+            delete Pelso;
+            cout<<"Az elso elemet toroltuk."<<endl;
+        }
+        else
+        {
+            cout<<"A lista ures."<<endl;
+        }
     }
     void lastdelete() ///az utolsó elem törlése
     {
@@ -222,21 +232,20 @@ public:
 int main(){
     LList lista;
 
-    lista.listreverse();
 
+    lista.outlist();
+    lista.firstdelete();
     lista.beforenewelement(3);
-    lista.listreverse();
-
     lista.afternewelement(4);
     lista.afternewelement(5);
     lista.beforenewelement(2);
     lista.afternewelement(6);
     lista.beforenewelement(1); 
 
-    lista.listreverse();
     lista.outlist();
 
-    lista.fillup({},5);
+    lista.firstdelete();
+    lista.outlist();
 
 
     
