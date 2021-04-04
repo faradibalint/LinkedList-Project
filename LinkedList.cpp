@@ -77,13 +77,54 @@ public:
     }
     void insidenewelement(int q) ///új elem beszúrása a listába
     {
+        element* elso = new element;
+        elso->data = q;
+        elso->next = NULL;
 
+        if(first==NULL)
+        {
+            first = elso;
+            last = elso;
+        }
+        else if (first==last)
+        {
+            first->next = elso;
+            last = elso;
+        }
+        else
+        {
+            elso->next = first->next;
+            first->next = elso;
+        }
     }
     void arrangednewelement(int q) ///új elem beszúrása rendezett listába
     {
-
+        bool rendezett = true;
+        element* n = first->next;
+        int x = first->data;
+        if(first!=NULL)
+        {
+            while(n!=NULL)
+            {
+                cout<<"x="<<x<<"n->data="<<n->data<<endl;
+                if (x>n->data)
+                {
+                    rendezett = false;
+                }
+                x=n->data;
+                n=n->next;
+            }
+            if (!rendezett)
+            {
+                cout<<"A lista rendezetlen. Szeretne rendezni? [I/N]"<<endl;
+            }
+            else
+            {
+                cout<<"A lista rendezett."<<endl;
+            }
+        }
     }
-   void firstdelete() ///az elsõ elem törlése
+    void firstdelete() ///az elsõ elem törlése
     {
         if(first!=NULL)
         {
@@ -247,6 +288,7 @@ public:
 int main(){
     LList lista;
 
+<<<<<<< Updated upstream
     lista.lastdelete();
     lista.beforenewelement(3);
     lista.afternewelement(4);
@@ -259,6 +301,14 @@ int main(){
 
     lista.lastdelete();
     lista.outlist();
+=======
+
+    lista.insidenewelement(1);
+    lista.insidenewelement(2);
+    lista.insidenewelement(3);
+    lista.outlist();
+    lista.arrangednewelement(1);
+>>>>>>> Stashed changes
 
 
     
