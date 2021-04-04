@@ -99,7 +99,21 @@ public:
     }
     void lastdelete() ///az utolsó elem törlése
     {
-
+       if(first!=NULL)
+        {
+            element* Utolso=last;
+            element* n = first;
+            while(n->next!=last){
+                n=n->next;
+            }
+            last=n;
+            delete Utolso;
+            cout<<"Az utolso elemet toroltuk."<<endl;
+        }
+        else
+        {
+            cout<<"A lista ures."<<endl;
+        } 
     }
     void insidedelete(int q) ///köztes elem törlése
     {
@@ -244,7 +258,7 @@ int main(){
 
     lista.outlist();
 
-    lista.firstdelete();
+    lista.lastdelete();
     lista.outlist();
 
 
