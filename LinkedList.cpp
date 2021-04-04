@@ -174,7 +174,31 @@ public:
     }
     void insidedelete(int q) ///köztes elem törlése
     {
-
+        if (q=1){
+             cout<<"ERROR:You can not delete the first and last element with this method. Use firstdelete() / lastdelete()"<<endl; 
+        }else{
+        element * n = first;
+        element * deleting;
+        int a=2;
+        if (first!=NULL && this->subquantity()>=q)
+        {
+          while(a!=q){
+            n=n->next;
+            a=a+1;
+        }  
+        deleting = n->next;
+        if (deleting!=last)
+        {
+             n->next = deleting->next;
+             delete deleting;
+        }else {
+            cout<<"ERROR:You can not delete the first and last element with this method. Use firstdelete() / lastdelete()"<<endl;        }
+       
+        }else{
+            cout<< "ERROR:The list is empty or contains less element." <<endl;
+        }
+    
+        }
     }
     void specifiedsearch(int q) ///megadott elem keresése
     {
@@ -297,6 +321,23 @@ public:
       cout<<"A lista sikeresen torlodott."<<endl;
       delete this;
     }
+    int subquantity(){
+        element* n = first;
+        int m=1;
+        if(first!=NULL)
+            {
+                while(n!=last)
+                {
+                m=m+1;
+                n=n->next;
+                }
+            return m;
+            }
+        else
+        {
+            return 0;
+        }
+    }
  
 };
 
@@ -310,10 +351,10 @@ int main(){
     lista.beforenewelement(2);
     lista.afternewelement(6);
     lista.beforenewelement(1); 
-
+    
     lista.outlist();
-
-    lista.lastdelete();
+    cout<<"UJLISTAKASLFJIOAJF"<<endl;
+    lista.insidedelete(1);
     lista.outlist();
 
 
