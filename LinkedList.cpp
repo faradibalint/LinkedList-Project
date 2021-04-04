@@ -107,6 +107,7 @@ public:
                 n=n->next;
             }
             last=n;
+            last->next=NULL;
             delete Utolso;
             cout<<"Az utolso elemet toroltuk."<<endl;
         }
@@ -246,9 +247,7 @@ public:
 int main(){
     LList lista;
 
-
-    lista.outlist();
-    lista.firstdelete();
+    lista.lastdelete();
     lista.beforenewelement(3);
     lista.afternewelement(4);
     lista.afternewelement(5);
