@@ -117,6 +117,21 @@ public:
             if (!rendezett)
             {
                 cout<<"A lista rendezetlen. Szeretne rendezni? [I/N]"<<endl;
+                char answer;
+                cin>>answer;
+                if (answer=='I' || answer=='i')
+                {
+                    
+                }
+                else if (answer=='N' || answer=='n')
+                {
+                    
+                }
+                else
+                {
+                    cout<<"ERROR: Rossz betut nyomott le."<<endl;
+                }
+
             }
             else
             {
@@ -288,7 +303,6 @@ public:
 int main(){
     LList lista;
 
-<<<<<<< Updated upstream
     lista.lastdelete();
     lista.beforenewelement(3);
     lista.afternewelement(4);
@@ -301,14 +315,6 @@ int main(){
 
     lista.lastdelete();
     lista.outlist();
-=======
-
-    lista.insidenewelement(1);
-    lista.insidenewelement(2);
-    lista.insidenewelement(3);
-    lista.outlist();
-    lista.arrangednewelement(1);
->>>>>>> Stashed changes
 
 
     
