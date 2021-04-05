@@ -99,14 +99,14 @@ public:
     }
     void arrangednewelement(int q) ///új elem beszúrása rendezett listába
     {
+        ///megnézzük hogy rendezett e a lista --> elvileg ez a rész működik
         bool rendezett = true;
         element* n = first->next;
         int x = first->data;
         if(first!=NULL)
         {
-            while(n!=NULL)
+            while(n!=NULL && rendezett==true)
             {
-                cout<<"x="<<x<<"n->data="<<n->data<<endl;
                 if (x>n->data)
                 {
                     rendezett = false;
@@ -114,29 +114,55 @@ public:
                 x=n->data;
                 n=n->next;
             }
-            if (!rendezett)
+            ///hogyha rendezett akkor megkeressük hogy hova kell berakni a cuccot és berakjuk oda.
+            if (rendezett)
             {
-                cout<<"A lista rendezetlen. Szeretne rendezni? [I/N]"<<endl;
-                char answer;
-                cin>>answer;
-                if (answer=='I' || answer=='i')
-                {
-                    
-                }
-                else if (answer=='N' || answer=='n')
-                {
-                    
-                }
-                else
-                {
-                    cout<<"ERROR: Rossz betut nyomott le."<<endl;
-                }
+                element* y = first->next; /// ezzel nézzük a következő elemet --> később ehhez hasonlítom a q-t
+                element* z = first; ///ezzel mindig az y előtti elemet nézzük, hogy ha megvan a helye a cuccnak akkor az előzőnek a mutatóját rá tudjam irányítani az új elemre
+                bool kisebbe=false;
 
+                while(!kisebbe || y!=NULL)
+                {
+                    ///ha kisebb mint az első elem akkor meghívjük a függvényt ami az első elé rakja be a balhét
+                    if(q<first->data)
+                    {
+                        kisebbe=true;
+                        this->beforenewelement(q);
+                    }
+                    ///ha nagyobb mint az utolsó akkor a lista végére beszúrós függvényt hívjuk meg
+                    else if(q>last->data)
+                    {
+                        kisebbe=true;
+                        this->afternewelement(q);
+                    }
+                    ///ha se nem az elejére, se nem a végére kerül akkor addig megyünk amíg meg nem találjuk a helyét és beszúrjuk oda.
+                    else
+                    {
+                        if (q<y->data)
+                        {
+                            element* elem = new element();
+                            elem->data = q;
+                            elem->next = y;
+                            z->next = elem;
+                            kisebbe=true;
+                        }
+                        else
+                        {
+                            y = y->next;
+                            z = z->next;
+                        }
+                    }
+                }
             }
-            else
+            else 
             {
-                cout<<"A lista rendezett."<<endl;
+                cout<<"ERROR: A lista rendezetlen. A rendezeshez hasznalja az arrange() fuggvenyt."<<endl;
             }
+            
+        }
+        else
+        {
+            cout<<"ERROR: A lista ures."<<endl;
         }
     }
     void firstdelete() ///az elsõ elem törlése
@@ -364,8 +390,8 @@ int main(){
     lista.afternewelement(6);
     lista.beforenewelement(1); 
     lista.outlist();
-    lista.elementswitch(0);
     cout<<"_____________________"<<endl;
+    lista.arrangednewelement(2);
     lista.outlist();
 
     
