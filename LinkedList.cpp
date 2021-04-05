@@ -238,9 +238,22 @@ public:
         cout<<"ERROR: A lista nem tartalmazza a modositando elemet."<<endl;
         }
     }
-    void elementswitch(int q,int p) ///két szomszédos elem cseréje
+    void elementswitch(int q) ///két szomszédos elem cseréje --> az első elem sorszámát kell megadni -->ezt cseréljük az utánalévővel
     {
-
+        if (first!=NULL && q!=0 && q<this->subquantity()){
+        element* n = first;
+        int a=1;
+        while(a!=q){
+            n = n->next;
+            a=a+1;
+        }
+        int temporary = n->data;
+        n->data = n->next->data;
+        n->next->data = temporary;
+        }else{
+            cout<<"ERROR: Hibas bemenet/A lista nem tartalmaz elemeket."<<endl;
+        }
+     
     }
     void listreverse() /// a lista megfordítása
     {
@@ -343,7 +356,6 @@ public:
 
 int main(){
     LList lista;
-
     lista.lastdelete();
     lista.beforenewelement(3);
     lista.afternewelement(4);
@@ -351,11 +363,12 @@ int main(){
     lista.beforenewelement(2);
     lista.afternewelement(6);
     lista.beforenewelement(1); 
+    lista.outlist();
+    lista.elementswitch(0);
+    cout<<"_____________________"<<endl;
+    lista.outlist();
+
     
-    lista.outlist();
-    cout<<"UJLISTAKASLFJIOAJF"<<endl;
-    lista.insidedelete(1);
-    lista.outlist();
 
 
     
