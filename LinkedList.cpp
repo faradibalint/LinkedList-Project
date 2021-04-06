@@ -117,25 +117,25 @@ public:
             ///hogyha rendezett akkor megkeressük hogy hova kell berakni a cuccot és berakjuk oda.
             if (rendezett)
             {
-                element* y = first->next; /// ezzel nézzük a következő elemet --> később ehhez hasonlítom a q-t
-                element* z = first; ///ezzel mindig az y előtti elemet nézzük, hogy ha megvan a helye a cuccnak akkor az előzőnek a mutatóját rá tudjam irányítani az új elemre
+                element* y = first->next; 
+                element* z = first; 
                 bool kisebbe=false;
 
                 while(!kisebbe && y!=NULL)
                 {
-                    ///ha kisebb mint az első elem akkor meghívjük a függvényt ami az első elé rakja be a balhét
+                    
                     if(q<first->data)
                     {
                         kisebbe=true;
                         this->beforenewelement(q);
                     }
-                    ///ha nagyobb mint az utolsó akkor a lista végére beszúrós függvényt hívjuk meg
+                    
                     else if(q>last->data)
                     {
                         kisebbe=true;
                         this->afternewelement(q);
                     }
-                    ///ha se nem az elejére, se nem a végére kerül akkor addig megyünk amíg meg nem találjuk a helyét és beszúrjuk oda.
+                    
                     else
                     {
                         if (q<y->data)
