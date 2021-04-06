@@ -121,7 +121,7 @@ public:
                 element* z = first; ///ezzel mindig az y előtti elemet nézzük, hogy ha megvan a helye a cuccnak akkor az előzőnek a mutatóját rá tudjam irányítani az új elemre
                 bool kisebbe=false;
 
-                while(!kisebbe || y!=NULL)
+                while(!kisebbe && y!=NULL)
                 {
                     ///ha kisebb mint az első elem akkor meghívjük a függvényt ami az első elé rakja be a balhét
                     if(q<first->data)
