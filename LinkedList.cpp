@@ -52,10 +52,8 @@ public:
         }
         else
         {
-            elso->next = first->next;
-            first->next = elso;
-            elso->data = first->data;
-            first->data = q;
+            elso->next = first;
+            first = elso;
         }   
     }
     void afternewelement(int q) ///új elem beszúrása a lista végére 
@@ -200,9 +198,12 @@ public:
     }
     void insidedelete(int q) ///köztes elem törlése
     {
-        if (q=1){
-             cout<<"ERROR:You can not delete the first and last element with this method. Use firstdelete() / lastdelete()"<<endl; 
-        }else{
+        if (q=1)
+        {
+            cout<<"ERROR: Nem torolheti ki az elso vagy utolso elemet ezzel a funkcioval. Hasznalja a firstdelete() vagy lastdelete() funkciokat."<<endl; 
+        }
+        else
+        {
         element * n = first;
         element * deleting;
         int a=2;
@@ -218,10 +219,10 @@ public:
              n->next = deleting->next;
              delete deleting;
         }else {
-            cout<<"ERROR:You can not delete the first and last element with this method. Use firstdelete() / lastdelete()"<<endl;        }
+            cout<<"ERROR: Nem torolheti ki az elso vagy utolso elemet ezzel a funkcioval. Hasznalja a firstdelete() vagy lastdelete() funkciokat."<<endl;        }
        
         }else{
-            cout<< "ERROR:The list is empty or contains less element." <<endl;
+            cout<< "ERROR: A lista nem tartalmazza a megadott elemet, vagy ures." <<endl;
         }
     
         }
@@ -377,25 +378,81 @@ public:
             return 0;
         }
     }
- 
+    void arrange() ///a lista sorrendbe rendezése
+    {
+        if (first==NULL)
+        {
+            cout<<"ERROR: A lista nem tartalmaz elemeket."<<endl;
+        }
+        else if (first==last)
+        {
+            cout<<"ERROR: A lista egy elemu, a sorba rendezes nem vegezheto el."<<endl;
+        }
+        else
+        {
+            element* n = first;
+            int a=1;
+            do
+            {
+                n=n->next;
+                a=a+1;
+            } while (n!=last);
+
+            int szamok[a];
+            int rszamok[a];
+            int w=a;
+
+            for (int i=w;i>=1;i--)
+            {
+                rszamok[i]=0;
+            }
+            element* o = first;
+            do
+            {
+                szamok[a]=o->data;
+                a=a-1;
+                o=o->next;
+            } while (o!=NULL);
+            cout<<endl;
+            for (int i=w; i>=1;i--)
+            {
+                rszamok[i]=szamok[i];
+                for (int j=w; j>=1; j--)
+                {
+                    if (szamok[j]>szamok[i] && i==w)
+                    {
+                        rszamok[i]=szamok[j];
+                    }
+                    else if (szamok[j]>rszamok[i] && szamok[j]<rszamok[i+1])
+                    {
+                        rszamok[i]=szamok[j];
+                    }
+                    else if (rszamok[i]>rszamok[i+1] && rszamok[i+1]>szamok[j])
+                    {
+                        rszamok[i]=szamok[j];
+                    }
+                }
+            }
+            for (int i=w;i>=1;i--)
+            {
+                cout<<rszamok[i]<<" "<<szamok[i]<<" "<<i<<endl;
+            }
+            
+        }
+    }
 };
 
 int main(){
     LList lista;
-    lista.lastdelete();
+    lista.beforenewelement(5);
     lista.beforenewelement(3);
-    lista.afternewelement(4);
-    lista.afternewelement(5);
+    lista.beforenewelement(4);
     lista.beforenewelement(2);
-    lista.afternewelement(6);
-    lista.beforenewelement(1); 
-    lista.outlist();
-    cout<<"_____________________"<<endl;
-    lista.arrangednewelement(2);
-    lista.outlist();
+    lista.beforenewelement(1);
+    lista.beforenewelement(1);
 
-    
-
+    lista.outlist();
+    lista.arrange();
 
     
     
