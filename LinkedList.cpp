@@ -3,6 +3,7 @@
 //This project is public. Source: github --> faradibalint/LinkedList-Project
 //Starting Date: 2021.04.01
 #include <iostream>
+#include <conio.h>
 
 using namespace std;
 
@@ -459,28 +460,146 @@ public:
 };
 
 int main(){
+    bool vanelista = false; 
+    cout<<"WELCOME IN THE LINKED LIST PROJECT!"<<endl;
+    cout<<"_____________________________________"<<endl;
+    while(!vanelista){   
+        cout<<"There is no list created. Do you want to create a linked list?"<<endl;
+        cout<<"y/n?"<<endl;
+        char beker;
+        beker = _getch();
+        if(beker=='y'){
+            system("cls");
+            cout<<"List successfully created!"<<endl;
+            vanelista=true;
+        }else if(beker=='n'){
+            cout<<"Closing program."<<endl;
+            return 0;
+        }else{
+            cout<<"Wrong answer! Try again."<<endl;
+        }
+    }
     LList lista;
-    lista.afternewelement(7);
-    lista.afternewelement(300);
-    lista.afternewelement(3);
-    lista.afternewelement(3);
-    lista.afternewelement(5);
-    lista.afternewelement(6);
-    lista.afternewelement(7);
-    lista.afternewelement(-90);
-    lista.afternewelement(-90);
-    lista.afternewelement(-10);
-    lista.afternewelement(-11);
-
-    lista.outlist();
-    cout<<endl;
-    lista.arrange();
-    lista.outlist();
-    
-    
-    
-     
-
-    
+    while(vanelista){
+    cout<<"_____________________________________"<<endl;
+    cout<<"List methods:"<<endl;
+    cout<<"1.Fill list from array"<<endl
+    <<"2.Insert new element before head"<<endl
+    <<"3.Insert new element inside the list"<<endl
+    <<"4.Insert new element at the end of the list"<<endl
+    <<"5.Insert new element into arranged list"<<endl
+    <<"6.Delete first element"<<endl
+    <<"7.Delete last element"<<endl
+    <<"8.Delete element from inside the list"<<endl
+    <<"9.Search for a specific element"<<endl
+    <<"10.Modify specific element"<<endl
+    <<"11.Switch neighbour elements"<<endl
+    <<"12.Reverse list"<<endl
+    <<"13.Show list's elements"<<endl
+    <<"14.Show number of elements of list"<<endl
+    <<"15.Delete list"<<endl
+    <<"16.Arrange list"<<endl;
+    cout<<"_____________________________________"<<endl;
+    cout<<"Type method's number to execute"<<endl;
+    cout<<"Number:";
+    int movement;
+    cin>>movement;
+    if (movement==1){
+        cout<<"Fill list from array"<<endl;
+        cout<<"Give the array's size: ";
+        int size;
+        cin>>size;
+        cout<<"------------------------"<<endl<<"Give the elements"<<endl;
+        int array[size];
+        for (int i=0;i<size;i++){
+            cin>>array[i];
+        }
+        lista.fillup(array,size);
+        cout<<"List successfully filled!"<<endl;
+    }else if(movement==2){
+        cout<<"Insert new element before head"<<endl;
+        cout<<"Give the element: ";
+        int elemement;
+        cin>>elemement;
+        lista.beforenewelement(elemement);
+        cout<<"Element successfully pushed"<<endl;
+    }else if(movement==3){
+        cout<<"Insert new element inside the list"<<endl;
+        cout<<"Give the element: ";
+        int elemement3;
+        cin>>elemement3;
+        lista.insidenewelement(elemement3);
+        cout<<"Element successfully pushed"<<endl;
+    }else if(movement==4){
+        cout<<"Insert new element at the end of the list"<<endl;
+        cout<<"Give the element: ";
+        int elemement2;
+        cin>>elemement2;
+        lista.afternewelement(elemement2);
+        cout<<"Element successfully pushed"<<endl;
+    }else if(movement==5){
+        cout<<"Insert new element into arranged list"<<endl;
+        cout<<"Give the element: ";
+        int elemement1;
+        cin>>elemement1;
+        lista.arrangednewelement(elemement1);
+        cout<<"Element successfully pushed"<<endl;
+    }else if(movement==6){
+        cout<<"Delete first element"<<endl;
+        lista.firstdelete();
+        cout<<"Element successfully deleted!"<<endl;
+    }else if(movement==7){
+        cout<<"Delete last element"<<endl;
+        lista.lastdelete();
+        cout<<"Element successfully deleted"<<endl;
+    }else if(movement==8){
+        cout<<"Delete element from inside the list"<<endl;
+        cout<<"Which element do you want to delete?"<<endl;
+        int elemement6;
+        cin>>elemement6;
+        lista.insidedelete(elemement6);
+        cout<<"Element successfully deleted"<<endl;
+    }else if(movement==9){
+        cout<<"Search for a specific element"<<endl;
+        cout<<"Give the element: ";
+        int elemement7;
+        cin>>elemement7;
+        lista.specifiedsearch(elemement7);
+    }else if(movement==10){
+        cout<<"Modify specific element"<<endl;
+        cout<<"Give the element: ";
+        int elemement8;
+        cin>>elemement8;
+        lista.specifiedmodify(elemement8);
+    }else if(movement==11){
+        cout<<"Switch neighbour elements"<<endl;
+        cout<<"Give the first element: ";
+        int elemement9;
+        cin>>elemement9;
+        lista.elementswitch(elemement9);
+        cout<<"Elements successfully switched"<<endl;
+    }else if(movement==12){
+        cout<<"Reverse list"<<endl;
+        lista.listreverse();
+        cout<<"Method successfully done!"<<endl;
+    }else if(movement==13){
+        cout<<"Show list's elements"<<endl;
+        lista.outlist();
+        cout<<"Method successfully done!"<<endl;
+    }else if(movement==14){
+        cout<<"Show number of elements of list"<<endl;
+        lista.quantity();
+        cout<<"Method successfully done!"<<endl;
+    }else if(movement==15){
+        cout<<"Delete list"<<endl;
+        lista.deletelist();
+        cout<<"Method successfully done!"<<endl;
+        vanelista=false;
+    }else if(movement==16){
+        cout<<"Arrange list"<<endl;
+        lista.arrange();
+        cout<<"Method successfully arranged!"<<endl;
+    }
+    }
     return 0;
 }
