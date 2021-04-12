@@ -401,6 +401,8 @@ public:
             int szamok[a];
             int rszamok[a];
             int w=a;
+            int voltmar=0;
+            int temp=0;
 
             for (int i=w;i>=1;i--)
             {
@@ -413,47 +415,67 @@ public:
                 a=a-1;
                 o=o->next;
             } while (o!=NULL);
-            cout<<endl;
-            for (int i=w; i>=1;i--)
+
+            for (int i=w; i>0; i--)
             {
-                rszamok[i]=szamok[i];
-                for (int j=w; j>=1; j--)
+                for (int j=w; j>0; j--)
                 {
-                    if (szamok[j]>szamok[i] && i==w)
+                    if ((rszamok[i]==0 && i==w) || (rszamok[i]==0 && szamok[j]!=voltmar))
                     {
                         rszamok[i]=szamok[j];
+                        temp=j;
                     }
-                    else if (szamok[j]>rszamok[i] && szamok[j]<rszamok[i+1])
+                    else if (rszamok[i]<szamok[j] && i==w)
                     {
                         rszamok[i]=szamok[j];
+                        voltmar=szamok[j]+1;
+                        temp=j;
                     }
-                    else if (rszamok[i]>rszamok[i+1] && rszamok[i+1]>szamok[j])
+                    else if (rszamok[i]<szamok[j] && szamok[j]!=voltmar)
                     {
                         rszamok[i]=szamok[j];
+                        temp=j;
+                    }
+                    else if (rszamok[i+1]==szamok[j] && szamok[j]!=voltmar)
+                    {
+                        rszamok[i]=szamok[j];
+                        temp=j;
                     }
                 }
+                szamok[temp]=voltmar;   
             }
-            for (int i=w;i>=1;i--)
+
+            int u=1;
+            element* s = first;
+            s->data=rszamok[u];
+            do
             {
-                cout<<rszamok[i]<<" "<<szamok[i]<<" "<<i<<endl;
-            }
-            
+                s=s->next;
+                u=u+1;
+                s->data = rszamok[u];
+            } while (s!=last);
         }
     }
 };
 
 int main(){
     LList lista;
-    lista.beforenewelement(5);
-    lista.beforenewelement(3);
-    lista.beforenewelement(4);
-    lista.beforenewelement(2);
-    lista.beforenewelement(1);
-    lista.beforenewelement(1);
+    lista.afternewelement(7);
+    lista.afternewelement(300);
+    lista.afternewelement(3);
+    lista.afternewelement(3);
+    lista.afternewelement(5);
+    lista.afternewelement(6);
+    lista.afternewelement(7);
+    lista.afternewelement(-90);
+    lista.afternewelement(-90);
+    lista.afternewelement(-10);
+    lista.afternewelement(-11);
 
     lista.outlist();
+    cout<<endl;
     lista.arrange();
-
+    lista.outlist();
     
     
     
